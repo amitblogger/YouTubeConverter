@@ -76,3 +76,16 @@ textarea#ytc-subtitles-input {
   resize: vertical;
   margin-top: 10px;
 }
+#ytc-blog-output h3 {
+  color: #22D3EE;
+  margin-top: 15px;
+}
+
+#ytc-blog-output ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+#ytc-blog-output ul li {
+  margin-bottom: 6px;
+}
