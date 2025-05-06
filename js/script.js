@@ -23,3 +23,31 @@ function ytcGenerateTimestamp() {
     result.innerHTML = `✅ Timestamped Clip: <br><a href="${newUrl}" target="_blank" style="color:#22D3EE;">${newUrl}</a>`;
     result.style.color = "#F8FAFC";
 }
+// Subtitle to Notes Generator Logic
+function ytcGenerateNotes() {
+    const input = document.getElementById("ytc-subtitles-input").value.trim();
+    const output = document.getElementById("ytc-notes-output");
+
+    if (!input) {
+        output.innerHTML = "❗ Please paste some subtitle content.";
+        output.style.color = "red";
+        return;
+    }
+
+    // Simple cleaning: remove timestamps, deduplicate lines, add bullets
+    let lines = input.split('\n');
+    let cleanLines = [];
+
+    lines.forEach(line => {
+        if (
+            line.trim() &&
+            !line.match(/\d{2}:\d{2}/) && // remove lines with timecodes
+            !cleanLines.includes(line.trim())
+        ) {
+            cleanLines.push("• " + line.trim());
+        }
+    });
+
+    output.style.color = "#F8FAFC";
+    output.innerHTML = cleanLines.join("\n");
+}
