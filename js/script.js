@@ -128,3 +128,39 @@ function ytcDownloadQuoteImage() {
     link.href = canvas.toDataURL();
     link.click();
 }
+// Multi-Platform Toolkit Generator Logic
+function ytcGenerateMultiContent() {
+    const url = document.getElementById("ytc-multi-url").value.trim();
+    const format = document.getElementById("ytc-format").value;
+    const output = document.getElementById("ytc-multi-output");
+
+    if (!url || !format) {
+        output.innerHTML = "❗ Please enter the video URL and select a format.";
+        output.style.color = "red";
+        return;
+    }
+
+    let result = "";
+    switch (format) {
+        case "short":
+            result = `🎥 Turn this video into a 60-second YouTube Short.\nFocus on: One impactful quote or highlight.\nAdd caption: "Watch the full version here 👇"\nLink: ${url}`;
+            break;
+        case "reel":
+            result = `📱 Convert the video into a vertical Instagram Reel.\nUse background music and overlay text for engagement.\nCTA: “Save for later!”\nLink: ${url}`;
+            break;
+        case "podcast":
+            result = `🎙️ Extract audio and convert into a 2-min podcast snippet.\nUse intro/outro template.\nSuggested Title: “Quick Take from [Your Video Topic]”\nLink: ${url}`;
+            break;
+        case "tweet":
+            result = `🐦 Create a Tweet Thread:\n1. Hook headline from the video\n2. Bullet points from highlights\n3. CTA to watch: ${url}`;
+            break;
+        case "linkedin":
+            result = `💼 Convert into a LinkedIn Thought Post:\n- Start with insight quote from video\n- Add 2–3 reflections\n- CTA: “Watch how this idea unfolds 👇”\nLink: ${url}`;
+            break;
+        default:
+            result = "Please choose a valid format.";
+    }
+
+    output.innerHTML = result;
+    output.style.color = "#F8FAFC";
+}
