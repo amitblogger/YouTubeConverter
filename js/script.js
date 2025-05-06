@@ -51,3 +51,30 @@ function ytcGenerateNotes() {
     output.style.color = "#F8FAFC";
     output.innerHTML = cleanLines.join("\n");
 }
+// Video to Blog Generator Logic
+function ytcGenerateBlog() {
+    const input = document.getElementById("ytc-blog-input").value.trim();
+    const output = document.getElementById("ytc-blog-output");
+
+    if (!input) {
+        output.innerHTML = "❗ Please paste a transcript or description.";
+        output.style.color = "red";
+        return;
+    }
+
+    let paragraphs = input.split(/\.\s|\n/); // break by sentence or newline
+    let blog = "<h3>📌 Introduction</h3>\n";
+    blog += `<p>${paragraphs.slice(0, 2).join('. ')}</p>\n`;
+
+    blog += "<h3>📋 Key Insights</h3>\n<ul>";
+    paragraphs.slice(2, 6).forEach(p => {
+        if (p.trim()) blog += `<li>${p.trim()}.</li>`;
+    });
+    blog += "</ul>\n";
+
+    blog += "<h3>🧠 Conclusion</h3>\n";
+    blog += `<p>${paragraphs.slice(-2).join('. ')}</p>\n`;
+
+    output.innerHTML = blog;
+    output.style.color = "#F8FAFC";
+}
