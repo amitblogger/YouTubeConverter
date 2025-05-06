@@ -65,3 +65,14 @@
   word-wrap: break-word;
   border-radius: 8px;
 }
+textarea#ytc-subtitles-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #22D3EE;
+  border-radius: 10px;
+  background-color: #1E293B;
+  color: #F8FAFC;
+  resize: vertical;
+  margin-top: 10px;
+}
