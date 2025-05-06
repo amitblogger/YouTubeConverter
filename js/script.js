@@ -78,3 +78,53 @@ function ytcGenerateBlog() {
     output.innerHTML = blog;
     output.style.color = "#F8FAFC";
 }
+// Quote Image Generator Logic
+function ytcGenerateQuoteImage() {
+    const quote = document.getElementById("ytc-quote-text").value.trim();
+    const canvas = document.getElementById("ytc-quote-canvas");
+    const ctx = canvas.getContext("2d");
+
+    if (!quote) {
+        alert("❗ Please enter a quote.");
+        return;
+    }
+
+    // Canvas background
+    ctx.fillStyle = "#0F172A";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Quote styling
+    ctx.fillStyle = "#22D3EE";
+    ctx.font = "bold 22px Inter";
+    ctx.textAlign = "center";
+
+    const words = quote.split(" ");
+    let line = "";
+    let y = 150;
+    const maxWidth = 500;
+
+    for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + " ";
+        const metrics = ctx.measureText(testLine);
+        const testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+            ctx.fillText(line, canvas.width / 2, y);
+            line = words[n] + " ";
+            y += 30;
+        } else {
+            line = testLine;
+        }
+    }
+    ctx.fillText(line, canvas.width / 2, y);
+
+    canvas.style.display = "block";
+    document.getElementById("ytc-download-btn").style.display = "inline-block";
+}
+
+function ytcDownloadQuoteImage() {
+    const canvas = document.getElementById("ytc-quote-canvas");
+    const link = document.createElement('a');
+    link.download = 'quote.png';
+    link.href = canvas.toDataURL();
+    link.click();
+}
